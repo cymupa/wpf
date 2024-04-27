@@ -13,7 +13,7 @@
         Background="Transparent"
         AllowsTransparency="True">
     <Border CornerRadius="8" Background="{StaticResource ColorBaseDark}"
-            BorderBrush="{StaticResource ColorBaseDark}"
+            BorderBrush="{StaticResource ColorBlue}"
             BorderThickness="2">
         <StackPanel>
             <Image Height="30"
