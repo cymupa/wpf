@@ -1,0 +1,124 @@
+﻿<Window x:Class="AdminPanelBeta.Pages.EditUserDataPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminPanelBeta.Pages"
+        mc:Ignorable="d"
+                   WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Width="400"
+        SizeToContent="Height"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="8" Background="{StaticResource ColorBaseDark}"
+            BorderBrush="{StaticResource ColorBaseDark}"
+            BorderThickness="2">
+        <StackPanel>
+            <Image Height="30"
+                   Width="30"
+                   HorizontalAlignment="Right"
+                   Margin="0,5,5,0"
+                   MouseDown="ExitPage"
+                   Source="/Images/close_2.png"/>
+            <StackPanel x:Name="DataAddUsers">
+                <TextBlock Text="Добавление сотрудника"
+                           Style="{StaticResource TextBlockTitleNamePage}"
+                           Margin="0"
+                           FontSize="20"/>
+                <Border Background="{StaticResource ColorBlue}"
+                           Width="150"
+                           Height="150"
+                           Margin="0,10,0,10">
+                </Border>
+                <UniformGrid Margin="0,5,0,0" Columns="4">
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Имя"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding product_name}"
+                         MaxLength="255"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Телефон"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding price}"
+                         PreviewTextInput="OnlyNumber"
+                         Margin="0,5,0,5"
+                         MaxLength="10"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Фамилия"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding price}"
+                         PreviewTextInput="OnlyNumber"
+                         Margin="0,5,0,5"
+                         MaxLength="10"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                      Text="Адресс"
+                      HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                      Text="{Binding price}"
+                      PreviewTextInput="OnlyNumber"
+                      Margin="0,5,0,5"
+                      MaxLength="10"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Отчество"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding price}"
+                         PreviewTextInput="OnlyNumber"
+                         Margin="0,5,0,5"
+                         MaxLength="10"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Возраст"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding price}"
+                         PreviewTextInput="OnlyNumber"
+                         Margin="0,5,0,5"
+                         MaxLength="10"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Пароль"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding price}"
+                         PreviewTextInput="OnlyNumber"
+                         Margin="0,5,0,5"
+                         MaxLength="10"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Должность"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding price}"
+                         PreviewTextInput="OnlyNumber"
+                         Margin="0,5,0,5"
+                         MaxLength="10"/>
+                </UniformGrid>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                         Text="Описание"
+                         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                          PreviewTextInput="OnlyNumber"
+                          MaxLength="10"
+                          Width="330"
+                          Height="80"
+                          Text="{Binding quantity}"/>
+                </StackPanel>
+                <Button Content="Редактировать"
+                        Style="{StaticResource ButtonAddAndEditInWindow}"
+                        Click="AddUsersButton"
+                        Width="150"
+                        Margin="10,15,10,10">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

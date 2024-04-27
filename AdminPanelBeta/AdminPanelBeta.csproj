@@ -58,11 +58,59 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\AddGamesDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddTournamentsData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddUserDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AutorizationWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditGamesDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditTournamentsData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditUserDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GamesDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Manager\AddNewsDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Manager\BroadcastDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Manager\NewsDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MenuWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StatisticsDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TournamentsData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,11 +127,47 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ConnectHttp\APIconfig.cs" />
+    <Compile Include="Pages\AddGamesDataPage.xaml.cs">
+      <DependentUpon>AddGamesDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddTournamentsData.xaml.cs">
+      <DependentUpon>AddTournamentsData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddUserDataPage.xaml.cs">
+      <DependentUpon>AddUserDataPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AutorizationWin.xaml.cs">
       <DependentUpon>AutorizationWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditGamesDataPage.xaml.cs">
+      <DependentUpon>EditGamesDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditTournamentsData.xaml.cs">
+      <DependentUpon>EditTournamentsData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditUserDataPage.xaml.cs">
+      <DependentUpon>EditUserDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GamesDataPage.xaml.cs">
+      <DependentUpon>GamesDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manager\AddNewsDataPage.xaml.cs">
+      <DependentUpon>AddNewsDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manager\BroadcastDataPage.xaml.cs">
+      <DependentUpon>BroadcastDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manager\NewsDataPage.xaml.cs">
+      <DependentUpon>NewsDataPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MenuWin.xaml.cs">
       <DependentUpon>MenuWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StatisticsDataPage.xaml.cs">
+      <DependentUpon>StatisticsDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TournamentsData.xaml.cs">
+      <DependentUpon>TournamentsData.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserDataPage.xaml.cs">
       <DependentUpon>UserDataPage.xaml</DependentUpon>
@@ -126,8 +210,6 @@
     <Resource Include="Images\human.png" />
     <Resource Include="Images\videogamess.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Manager\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

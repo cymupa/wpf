@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\fedorov-aa\Desktop\AdminPanelBeta\AdminPanelBeta\obj\Debug\
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\
 AdminPanelBeta
 none
 false
 DEBUG;TRACE
-C:\Users\fedorov-aa\Desktop\AdminPanelBeta\AdminPanelBeta\App.xaml
+H:\rb\AdminPanelBeta\AdminPanelBeta\App.xaml
 4-2081005352
 
-9-937982968
-141326039334
+101274895710
+14-593897109
 Pages\AutorizationWin.xaml;Pages\MenuWin.xaml;Pages\UserDataPage.xaml;Pages\WelcomeWin.xaml;
 
-False
+True
 
