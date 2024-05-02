@@ -20,7 +20,6 @@
                    Width="30"
                    HorizontalAlignment="Right"
                    Margin="0,5,5,0"
-                   MouseDown="ExitPage"
                    Source="/Images/close_2.png"/>
             <StackPanel x:Name="DataAddUsers">
                 <TextBlock Text="Добавление сотрудника"
@@ -32,7 +31,7 @@
                            Height="150"
                            Margin="0,10,0,10">
                 </Border>
-                <UniformGrid Margin="0,5,0,0" Columns="4">
+                <UniformGrid Margin="-20,5,0,0" Columns="4">
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                          Text="Имя"
                          HorizontalAlignment="Center" Height="20"/>
@@ -44,7 +43,6 @@
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
                          Text="{Binding price}"
-                         PreviewTextInput="OnlyNumber"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
@@ -52,7 +50,6 @@
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
                          Text="{Binding price}"
-                         PreviewTextInput="OnlyNumber"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
@@ -60,7 +57,6 @@
                       HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
                       Text="{Binding price}"
-                      PreviewTextInput="OnlyNumber"
                       Margin="0,5,0,5"
                       MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
@@ -68,7 +64,6 @@
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
                          Text="{Binding price}"
-                         PreviewTextInput="OnlyNumber"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
@@ -76,7 +71,6 @@
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
                          Text="{Binding price}"
-                         PreviewTextInput="OnlyNumber"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
@@ -84,7 +78,6 @@
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
                          Text="{Binding price}"
-                         PreviewTextInput="OnlyNumber"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
@@ -92,7 +85,6 @@
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
                          Text="{Binding price}"
-                         PreviewTextInput="OnlyNumber"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                 </UniformGrid>
@@ -101,7 +93,6 @@
                          Text="Описание"
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                          PreviewTextInput="OnlyNumber"
                           MaxLength="10"
                           Width="330"
                           Height="80"
@@ -109,7 +100,6 @@
                 </StackPanel>
                 <Button Content="Добавить"
                         Style="{StaticResource ButtonAddAndEditInWindow}"
-                        Click="AddUsersButton"
                         Width="150"
                         Margin="10,15,10,10">
                     <Button.Resources>

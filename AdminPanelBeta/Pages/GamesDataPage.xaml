@@ -23,8 +23,7 @@
                         <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
                                    Text="Поиск:"/>
                         <TextBox Style="{StaticResource TextBoxSearch}"
-                                 x:Name="SearchNameTovarTextBox"
-                                 TextChanged="SearchNameTovarTextBox_TextChanged"/>
+                                 x:Name="SearchNameTovarTextBox"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
@@ -33,13 +32,11 @@
                                   DisplayMemberPath="category_name"
                                   SelectedValuePath="category_name"
                                   SelectedIndex="0"
-                                  SelectionChanged="ComboBoxCategories_SelectedChanged"
                                   x:Name="ComboBoxCategories"/>
                     </StackPanel>
                 </Grid>
                 <Button Content="Добавить игру"
-                        Style="{StaticResource ButtonInsertInPage}"
-                        Click="AddProductsToNavigateWin">
+                        Style="{StaticResource ButtonInsertInPage}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -52,7 +49,6 @@
                     <ListBox x:Name="ListBoxTovarList"
                              Height="340"
                              HorizontalContentAlignment="Stretch"
-                             SelectionChanged="SelectionChangedProducts"
                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              Background="{StaticResource ColorBaseDark}"
@@ -71,12 +67,10 @@
                                                    TextTrimming="CharacterEllipsis"/>
                                         <Label Content="Изменить"
                                                    Grid.Column="1"
-                                                   Style="{DynamicResource LabelTile}"
-                                                   MouseDoubleClick="EditProductsToNavigateWin"/>
+                                                   Style="{DynamicResource LabelTile}"/>
                                         <Label Content="Удалить"
                                                    Grid.Column="2"
-                                                   Style="{DynamicResource LabelTile}"
-                                                   MouseDoubleClick="DeleteProducts"/>
+                                                   Style="{DynamicResource LabelTile}"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>

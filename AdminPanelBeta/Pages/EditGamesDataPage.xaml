@@ -55,7 +55,6 @@
                 </Grid>
                 <Button Content="Редактировать"
                         Style="{StaticResource ButtonAddAndEditInWindow}"
-                        Click="AddUsersButton"
                         Width="150"
                         Margin="10,15,10,10">
                     <Button.Resources>

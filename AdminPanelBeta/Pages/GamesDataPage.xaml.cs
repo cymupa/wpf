@@ -17,7 +17,7 @@ namespace AdminPanelBeta.Pages
     /// <summary>
     /// Логика взаимодействия для GamesWin.xaml
     /// </summary>
-    public partial class GamesDataPage : Window
+    public partial class GamesDataPage 
     {
         public GamesDataPage()
         {

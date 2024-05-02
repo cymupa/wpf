@@ -17,7 +17,7 @@ namespace AdminPanelBeta.Pages
     /// <summary>
     /// Логика взаимодействия для TournamentsData.xaml
     /// </summary>
-    public partial class TournamentsData : Window
+    public partial class TournamentsData 
     {
         public TournamentsData()
         {

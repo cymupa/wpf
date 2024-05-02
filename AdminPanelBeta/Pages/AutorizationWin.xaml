@@ -31,7 +31,7 @@
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                            Text="Номер телефона"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         x:Name="LoginTextBox"
+                         x:Name="TelTextBox"
                          MaxLength="255"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                            Text="Пароль"/>
@@ -50,6 +50,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
+                <ListBox x:Name="userListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="300" />
             </StackPanel>
         </StackPanel>
     </Border>

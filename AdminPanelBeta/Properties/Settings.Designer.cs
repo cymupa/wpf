@@ -26,5 +26,7 @@ namespace AdminPanelBeta.Properties
                 return defaultInstance;
             }
         }
+
+        public string Role { get; internal set; }
     }
 }

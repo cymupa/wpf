@@ -23,5 +23,11 @@ namespace AdminPanelBeta.Pages
         {
             InitializeComponent();
         }
+        private void ExitPage(object sender, MouseButtonEventArgs e)
+        {
+            var welcomewin = new WelcomeWin();
+            welcomewin.Show();
+            this.Close();
+        }
     }
 }

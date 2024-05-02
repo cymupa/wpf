@@ -24,40 +24,11 @@ namespace AdminPanelBeta.Pages
         public UserDataPage()
         {
             InitializeComponent();
-            LoadUsers();
         }
-        private async void LoadUsers()
-        {
-            try
-            {
-                // Создаем экземпляр класса APIConfig
-                APIConfig apiConfig = new APIConfig();
 
-                // Получаем список пользователей из API
-                List<User> users = await apiConfig.GetUsers(10);
-
-                if (users != null)
-                {
-                    // Очищаем ListBox
-                    ListBoxUsersList.Items.Clear();
-
-                    // Добавляем каждого пользователя в ListBox
-                    foreach (var user in users)
-                    {
-                        ListBoxUsersList.Items.Add(user);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Обработка ошибок
-                MessageBox.Show($"Ошибка при загрузке пользователей: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-        }
         private void SelectionChangedUsers(object sender, SelectionChangedEventArgs e)
         {
-            // Обработка изменения выбранного элемента в ListBox
+           
         }
         private void EditUsersToNavigateWin(object sender, RoutedEventArgs e) 
         {
