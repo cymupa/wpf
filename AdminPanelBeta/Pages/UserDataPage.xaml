@@ -16,6 +16,7 @@
                       Style="{StaticResource TextBlockTitleNamePage}"/>
                 <Button Content="Добавить пользователя"
                    Width="150"
+                   Click="AddUserButton_Click"
                    Style="{StaticResource ButtonInsertInPage}">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -50,7 +51,7 @@
                                            Width="160"
                                            Height="30"
                                            Margin="10">
-                                        <TextBlock Text="{Binding name}"
+                                        <TextBlock Text="{Binding Name}"
                                                   HorizontalAlignment="Center"
                                                   Style="{DynamicResource TextBlockTile}"
                                                   TextTrimming="CharacterEllipsis"/>
@@ -60,7 +61,7 @@
                                            Width="160"
                                            Height="30"
                                            Margin="10">
-                                        <TextBlock Text="{Binding phone}"
+                                        <TextBlock Text="{Binding Role}"
                                                   HorizontalAlignment="Center"
                                                   Style="{DynamicResource TextBlockTile}"
                                                   TextTrimming="CharacterEllipsis"/>

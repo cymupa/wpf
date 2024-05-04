@@ -27,11 +27,13 @@
                            Style="{StaticResource TextBlockTitleNamePage}"
                            Margin="0"
                            FontSize="20"/>
-                <Border Background="{StaticResource ColorBlue}"
-                           Width="150"
-                           Height="150"
-                           Margin="0,10,0,10">
-                </Border>
+                <Image
+                     Width="140"
+                     Height="140"
+                     Margin="10,20,10,10"
+                     Source="/Images/no_photo.png"
+                     MouseDown="SelectImage">
+                </Image>
                 <UniformGrid Margin="0,5,0,0" Columns="4">
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                          Text="Имя"
@@ -89,16 +91,7 @@
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                 </UniformGrid>
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Описание"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                          MaxLength="10"
-                          Width="330"
-                          Height="80"
-                          Text="{Binding quantity}"/>
-                </StackPanel>
+                
                 <Button Content="Редактировать"
                         Style="{StaticResource ButtonAddAndEditInWindow}"
                         Width="150"

@@ -27,13 +27,13 @@
                            Style="{StaticResource TextBlockTitleNamePage}"
                            Margin="0"
                            FontSize="20"/>
-                <Border Background="{DynamicResource ColorBaseDark}"
-                        Width="140"
-                        CornerRadius="20"
-                        Margin="10,20,10,10">
-                    <Image Source="/Images/human.png"
-                           Margin="5"/>
-                </Border>
+                <Image
+                     Width="140"
+                     Height="140"
+                     Margin="10,20,10,10"
+                     Source="/Images/no_photo.png"
+                     MouseDown="SelectImage">
+                </Image>
                 <UniformGrid Margin="50,5,50,0" Columns="1">
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                           Text="Название"

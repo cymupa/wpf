@@ -9,8 +9,9 @@ using Newtonsoft.Json;
 
 namespace AdminPanelBeta.ConnectHttp
 {
+
     public class APIConfig
     {
-        public static string APIurl = "http://evseev-dv.tepk-it.ru/api";
+        public static string BaseUrl { get; } = "http://evseev-dv.tepk-it.ru/api";
     }
 }

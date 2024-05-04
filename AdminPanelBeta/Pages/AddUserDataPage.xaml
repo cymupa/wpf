@@ -20,88 +20,80 @@
                    Width="30"
                    HorizontalAlignment="Right"
                    Margin="0,5,5,0"
+                   MouseDown="ExitPage"
                    Source="/Images/close_2.png"/>
             <StackPanel x:Name="DataAddUsers">
                 <TextBlock Text="Добавление сотрудника"
                            Style="{StaticResource TextBlockTitleNamePage}"
                            Margin="0"
                            FontSize="20"/>
-                <Border Background="{StaticResource ColorBlue}"
-                           Width="150"
-                           Height="150"
-                           Margin="0,10,0,10">
-                </Border>
+                <Image
+                         Width="140"
+                         Source="/Images/no_photo.png"
+                         Height="140"/>
                 <UniformGrid Margin="-20,5,0,0" Columns="4">
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Имя"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding product_name}"
-                         MaxLength="255"/>
+         Text="Имя"
+         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox x:Name="NameTextBox"
+         Style="{StaticResource TextBoxAddAndEdit}"
+         Text="{Binding Surname}"
+         MaxLength="255"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Телефон"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
+         Text="Телефон"
+         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox x:Name="TelTextBox"
+         Style="{StaticResource TextBoxAddAndEdit}"
+         Text="{Binding Tel}"
+         Margin="0,5,0,5"
+         MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Фамилия"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
+         Text="Фамилия"
+         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox x:Name="SurnameTextBox"
+         Style="{StaticResource TextBoxAddAndEdit}"
+         Text="{Binding Surname}"
+         Margin="0,5,0,5"
+         MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                      Text="Адресс"
-                      HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                      Text="{Binding price}"
-                      Margin="0,5,0,5"
-                      MaxLength="10"/>
+      Text="Адрес"
+      HorizontalAlignment="Center" Height="20"/>
+                    <TextBox x:Name="AddressTextBox"
+      Style="{StaticResource TextBoxAddAndEdit}"
+      Text="{Binding Address}"
+      Margin="0,5,0,5"
+      MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Отчество"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
+         Text="Отчество"
+         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox x:Name="PatronymicTextBox"
+         Style="{StaticResource TextBoxAddAndEdit}"
+         Text="{Binding Patronymic}"
+         Margin="0,5,0,5"
+         MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Возраст"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
+         Text="Дата рождения"
+         HorizontalAlignment="Center" Height="20"/>
+                    <DatePicker x:Name="BirthDatePicker"
+                                Margin="0,5,0,5"
+                                DisplayDateStart="1900-01-01"
+                                DisplayDateEnd="2100-01-01"
+                                SelectedDateFormat="Short"/>
+
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Пароль"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
-                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Должность"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
+         Text="Пароль"
+         HorizontalAlignment="Center" Height="20"/>
+                    <TextBox x:Name="PassTextBox"
+         Style="{StaticResource TextBoxAddAndEdit}"
+         Text="{Binding Pass}"
+         Margin="0,5,0,5"
+         MaxLength="10"/>
                 </UniformGrid>
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Описание"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                          MaxLength="10"
-                          Width="330"
-                          Height="80"
-                          Text="{Binding quantity}"/>
-                </StackPanel>
                 <Button Content="Добавить"
                         Style="{StaticResource ButtonAddAndEditInWindow}"
                         Width="150"
-                        Margin="10,15,10,10">
+                        Margin="10,15,10,10"
+                        Click="AddUser_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>

@@ -37,7 +37,7 @@
         x:Name="TournamentsButton"
         Style="{DynamicResource ButtonNavigateInMenuWindow}"/>
             <Button Grid.Column="2" Content="Игры"
-        x:Name="GamesButton"
+        x:Name="GamesButton" Click="GameToButton"
         Style="{DynamicResource ButtonNavigateInMenuWindow}"/>
             <Button Grid.Column="3" Content="Сотрудники" Click="EmployeesToButton"
         x:Name="EmployeesButton"

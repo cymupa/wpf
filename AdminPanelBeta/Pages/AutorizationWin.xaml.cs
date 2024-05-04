@@ -25,81 +25,63 @@ namespace AdminPanelBeta.Pages
     /// </summary>
     public partial class AutorizationWin : Window
     {
-
+        private readonly HttpClient _client;
         public AutorizationWin()
         {
             InitializeComponent();
-        }
-        private async Task<bool> CheckApiConnectionAsync()
-        {
-            try
-            {
-                HttpClient httpClient = new HttpClient();
-                HttpResponseMessage response = await httpClient.GetAsync("http://evseev-dv.tepk-it.ru/api");
-                response.EnsureSuccessStatusCode();
-                Console.WriteLine("Подключение к API успешно!");
-                return true;
-            }
-            catch (HttpRequestException ex)
-            {
-                MessageBox.Show($"Ошибка подключения к API: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
+            _client = new HttpClient();
+            Loaded += AutorizationWin_Loaded;
         }
 
+        // Метод, вызываемый при загрузке окна
+        private void AutorizationWin_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Устанавливаем значения по умолчанию
+            TelTextBox.Text = "000333000";
+            PasswordTextBox.Password = "00000000";
+        }
         public async void ButtonSignIn_Click(object sender, RoutedEventArgs e)
         {
-            // Проверяем подключение к API перед попыткой входа
-            bool isConnected = await CheckApiConnectionAsync();
-            if (!isConnected)
-            {
-                // Если подключение не удалось, прерываем процесс входа
-                return;
-            }
-
             string tel = TelTextBox.Text;
             string pass = PasswordTextBox.Password;
+
             if (string.IsNullOrWhiteSpace(tel) || string.IsNullOrWhiteSpace(pass))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
                 return;
             }
-            var credentials = new { phone = tel, password = pass };
 
-            // Сериализуем объект в JSON
+            var credentials = new { tel = tel, password = pass };
             string json = JsonConvert.SerializeObject(credentials);
-
-            // Используем HttpClient для выполнения POST запроса к API
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await client.PostAsync(APIConfig.APIurl + "/auth/login",
-                     new StringContent(json, Encoding.UTF8, "application/json"));
+                HttpResponseMessage response = await client.PostAsync(APIConfig.BaseUrl + "/authorization",
+                new StringContent(json, Encoding.UTF8, "application/json"));
 
                 string responseBody = await response.Content.ReadAsStringAsync();
-
                 // Парсим ответ в объект
                 var responseObject = JsonConvert.DeserializeObject<dynamic>(responseBody);
+                MessageBox.Show(responseBody);
 
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    MessageBox.Show("Неверный телефон или пароль."); // Выводим сообщение об ошибке, если аутентификация не удалась
+                    MessageBox.Show("Неверный телефон или пароль.");
                     return;
                 }
-
-                string userRole = Properties.Settings.Default.Role;
-                if (userRole != "admin" && userRole != "manager")
-                {
-                    MessageBox.Show("Доступ запрещен. У вас нет прав доступа для этого приложения."); // Выводим сообщение об ошибке, если у пользователя нет прав администратора или менеджера
-                    return;
-                }
+                    // Сохраняем пользователя в настройках приложения
+                    Properties.Settings.Default.Token = responseObject.token;
+                    Properties.Settings.Default.Save();
+                    // Открываем окно меню
+                    var menuwin = new MenuWin();
+                    menuwin.Show();
+                    this.Close();
             }
         }
-
-        private void ExitPage(object sender, MouseButtonEventArgs e)
-        {
-            var welcomewin = new WelcomeWin();
-            welcomewin.Show();
-            this.Close();
-        }
+                private void ExitPage(object sender, MouseButtonEventArgs e)
+                {
+                   var welcomewin = new WelcomeWin();
+                   welcomewin.Show();
+                   this.Close();
+                }
     }
 }

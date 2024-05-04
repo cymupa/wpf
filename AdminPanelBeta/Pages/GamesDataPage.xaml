@@ -36,6 +36,7 @@
                     </StackPanel>
                 </Grid>
                 <Button Content="Добавить игру"
+                        Click="AddGameButton_Click"
                         Style="{StaticResource ButtonInsertInPage}">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -62,7 +63,7 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding product_name}"
+                                        <TextBlock Text="{Binding Name}"
                                                    Style="{DynamicResource TextBlockTile}"
                                                    TextTrimming="CharacterEllipsis"/>
                                         <Label Content="Изменить"

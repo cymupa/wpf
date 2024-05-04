@@ -19,10 +19,15 @@ namespace AdminPanelBeta.Pages
     /// </summary>
     public partial class MenuWin : Window
     {
+
         public MenuWin()
         {
             InitializeComponent();
+            string userName = Properties.Settings.Default.Name;
+            TextBlockFIOUser.Text = userName;
+            TextBlockPositionUser.Text = "Готово";
         }
+
         private void ButtonNavigateToWelcomeWindow(object sender, MouseButtonEventArgs e)
         {
             if (MessageBox.Show("Вы хотите выйти из учетной записи?", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK)
@@ -42,6 +47,11 @@ namespace AdminPanelBeta.Pages
         {
             UserDataPage userDataPage = new UserDataPage();
             NavigateFrame(userDataPage);
+        }
+        private void GameToButton(object sender, RoutedEventArgs e)
+        {
+            GamesDataPage GamesDataPage = new GamesDataPage();
+            NavigateFrame(GamesDataPage);
         }
     }
 }

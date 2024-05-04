@@ -50,7 +50,6 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <ListBox x:Name="userListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="300" />
             </StackPanel>
         </StackPanel>
     </Border>
