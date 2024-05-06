@@ -1,31 +1,20 @@
 ﻿using AdminPanelBeta.ConnectHttp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static AdminPanelBeta.ConnectHttp.APIConfig;
-using System.Net.Http;
-using System.Net;
 
 namespace AdminPanelBeta.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AutorizationWin.xaml
-    /// </summary>
     public partial class AutorizationWin : Window
     {
         private readonly HttpClient _client;
+
         public AutorizationWin()
         {
             InitializeComponent();
@@ -33,13 +22,13 @@ namespace AdminPanelBeta.Pages
             Loaded += AutorizationWin_Loaded;
         }
 
-        // Метод, вызываемый при загрузке окна
         private void AutorizationWin_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем значения по умолчанию
             TelTextBox.Text = "000333000";
             PasswordTextBox.Password = "00000000";
         }
+
         public async void ButtonSignIn_Click(object sender, RoutedEventArgs e)
         {
             string tel = TelTextBox.Text;
@@ -53,35 +42,81 @@ namespace AdminPanelBeta.Pages
 
             var credentials = new { tel = tel, password = pass };
             string json = JsonConvert.SerializeObject(credentials);
+
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.PostAsync(APIConfig.BaseUrl + "/authorization",
-                new StringContent(json, Encoding.UTF8, "application/json"));
+                    new StringContent(json, Encoding.UTF8, "application/json"));
 
                 string responseBody = await response.Content.ReadAsStringAsync();
-                // Парсим ответ в объект
-                var responseObject = JsonConvert.DeserializeObject<dynamic>(responseBody);
-                MessageBox.Show(responseBody);
 
+                // Проверяем, успешно ли прошла аутентификация
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     MessageBox.Show("Неверный телефон или пароль.");
                     return;
                 }
-                    // Сохраняем пользователя в настройках приложения
-                    Properties.Settings.Default.Token = responseObject.token;
+
+                // Получаем токен пользователя
+                dynamic responseObject = JsonConvert.DeserializeObject<dynamic>(responseBody);
+                string token = responseObject.token;
+
+                // Сохраняем токен в настройках приложения
+                Properties.Settings.Default.Token = token;
+                Properties.Settings.Default.Save();
+
+                // Отправляем запрос к эндпоинту /me для получения информации о пользователе
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                HttpResponseMessage meResponse = await client.GetAsync(APIConfig.BaseUrl + "/me");
+
+                string meResponseBody = await meResponse.Content.ReadAsStringAsync();
+                JArray meResponseArray = JArray.Parse(meResponseBody);
+
+                // Предполагаем, что массив содержит только один объект пользователя
+                if (meResponseArray.Count > 0)
+                {
+                    // Получаем данные пользователя из первого объекта массива
+                    dynamic meResponseObject = meResponseArray[0];
+                    string name = meResponseObject.name;
+                    string surname = meResponseObject.surname;
+                    int role_id = meResponseObject.role_id;
+
+                    // Сохраняем данные пользователя в настройках приложения
+                    Properties.Settings.Default.Name = name;
+                    Properties.Settings.Default.Surname = surname;
+                    Properties.Settings.Default.Role = role_id.ToString();
                     Properties.Settings.Default.Save();
-                    // Открываем окно меню
-                    var menuwin = new MenuWin();
-                    menuwin.Show();
-                    this.Close();
+
+                    // Проверяем айди ролей
+                    if (role_id == 2 || role_id == 3)
+                    {
+                        // Открываем окно меню
+                        var menuwin = new MenuWin();
+                        menuwin.Show();
+                    }
+                    else
+                    {
+                        // Пользователь не имеет прав доступа
+                        MessageBox.Show("У вас нет доступа к этому приложению.");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось получить информацию о пользователе.");
+                    return;
+                }
+
+                // Закрываем текущее окно
+                this.Close();
             }
         }
-                private void ExitPage(object sender, MouseButtonEventArgs e)
-                {
-                   var welcomewin = new WelcomeWin();
-                   welcomewin.Show();
-                   this.Close();
-                }
+
+        private void ExitPage(object sender, MouseButtonEventArgs e)
+        {
+            var welcomewin = new WelcomeWin();
+            welcomewin.Show();
+            this.Close();
+        }
     }
 }

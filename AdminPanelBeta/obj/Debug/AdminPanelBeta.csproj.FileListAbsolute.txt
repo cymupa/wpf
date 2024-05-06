@@ -53,9 +53,6 @@ H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditGamesDataPage.g.cs
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditTournamentsData.g.cs
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditUserDataPage.g.cs
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\GamesDataPage.g.cs
-H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\Manager\AddNewsDataPage.g.cs
-H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\Manager\BroadcastDataPage.g.cs
-H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\Manager\NewsDataPage.g.cs
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\StatisticsDataPage.g.cs
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\TournamentsData.g.cs
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\UserDataPage.g.cs
@@ -66,9 +63,12 @@ H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditGamesDataPage.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditTournamentsData.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditUserDataPage.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\GamesDataPage.baml
-H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\Manager\AddNewsDataPage.baml
-H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\Manager\BroadcastDataPage.baml
-H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\Manager\NewsDataPage.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\StatisticsDataPage.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\TournamentsData.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\UserDataPage.baml
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\AddNewsDataPage.g.cs
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\BroadcastDataPage.g.cs
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\NewsDataPage.g.cs
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\AddNewsDataPage.baml
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\BroadcastDataPage.baml
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\NewsDataPage.baml

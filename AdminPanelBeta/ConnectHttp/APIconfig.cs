@@ -12,6 +12,6 @@ namespace AdminPanelBeta.ConnectHttp
 
     public class APIConfig
     {
-        public static string BaseUrl { get; } = "http://evseev-dv.tepk-it.ru/api";
+        public static string BaseUrl { get; set; } = "http://evseev-dv.tepk-it.ru/api";
     }
 }

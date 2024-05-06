@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <Image Source="/Images/videogamess.png" Margin="10,5,5,5"/>
             <Button Grid.Column="1" Content="Новости"
-        x:Name="NewsButton"
+        x:Name="NewsButton" Click="NewsToButton"
         Style="{DynamicResource ButtonNavigateInMenuWindow}"/>
             <Button Grid.Column="2" Content="Трансляции"
         x:Name="BroadcastsButton"

@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\NewsDataPage.xaml.cs">
+      <DependentUpon>NewsDataPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Page Include="Pages\AddGamesDataPage.xaml">
       <SubType>Designer</SubType>
@@ -106,19 +109,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Manager\AddNewsDataPage.xaml">
+    <Page Include="Pages\AddNewsDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Manager\BroadcastDataPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Manager\NewsDataPage.xaml">
+    <Page Include="Pages\BroadcastDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MenuWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NewsDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,14 +170,11 @@
     <Compile Include="Pages\GamesDataPage.xaml.cs">
       <DependentUpon>GamesDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Manager\AddNewsDataPage.xaml.cs">
+    <Compile Include="Pages\AddNewsDataPage.xaml.cs">
       <DependentUpon>AddNewsDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Manager\BroadcastDataPage.xaml.cs">
+    <Compile Include="Pages\BroadcastDataPage.xaml.cs">
       <DependentUpon>BroadcastDataPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Manager\NewsDataPage.xaml.cs">
-      <DependentUpon>NewsDataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MenuWin.xaml.cs">
       <DependentUpon>MenuWin.xaml</DependentUpon>

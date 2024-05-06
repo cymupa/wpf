@@ -31,8 +31,7 @@
                      Width="140"
                      Height="140"
                      Margin="10,20,10,10"
-                     Source="/Images/no_photo.png"
-                     MouseDown="SelectImage">
+                     Source="/Images/no_photo.png">
                 </Image>
                 <UniformGrid Margin="0,5,0,0" Columns="4">
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"

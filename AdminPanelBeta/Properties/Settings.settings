@@ -14,7 +14,7 @@
     <Setting Name="Surname" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Role_id" Type="System.String" Scope="User">
+    <Setting Name="Role" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

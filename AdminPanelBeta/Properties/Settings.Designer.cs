@@ -74,12 +74,12 @@ namespace AdminPanelBeta.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Role_id {
+        public string Role {
             get {
-                return ((string)(this["Role_id"]));
+                return ((string)(this["Role"]));
             }
             set {
-                this["Role_id"] = value;
+                this["Role"] = value;
             }
         }
     }
