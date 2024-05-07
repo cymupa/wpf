@@ -29,12 +29,11 @@
                            FontSize="20"/>
                 <StackPanel x:Name="stackPanelImages" Margin="0,0,0,10">
                     <Image x:Name="img_1" Width="200" Height="200" Source="/Images/no_photo.png"/>
-                    <Button x:Name="deleteButton" Content="Удалить фотографию" Width="120" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,0" Visibility="Hidden" Click="deleteButton_Click"/>
+                    <Button x:Name="deleteButton" Content="Удалить фотографию" Width="120" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,0" Visibility="Hidden" />
                     <Button 
                          Content="Добавить"
                          Style="{StaticResource ButtonAddAndEditInWindow}"
                          Width="150"
-                         Click="AddPhotoButton_Click"
                          Margin="10,15,10,10">
                     </Button>
                 </StackPanel>
@@ -60,7 +59,6 @@
                     </StackPanel>
                 </Grid>
                 <Button Content="Редактировать"
-                        Click="EditGameButton_Click"
                         Style="{StaticResource ButtonAddAndEditInWindow}"
                         Width="150"
                         Margin="10,15,10,10">

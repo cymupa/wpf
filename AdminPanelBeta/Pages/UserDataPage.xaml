@@ -61,7 +61,7 @@
                                            Width="160"
                                            Height="30"
                                            Margin="10">
-                                        <TextBlock Text="{Binding Role}"
+                                        <TextBlock Text="{Binding RoleName}"
                                                   HorizontalAlignment="Center"
                                                   Style="{DynamicResource TextBlockTile}"
                                                   TextTrimming="CharacterEllipsis"/>

@@ -82,5 +82,41 @@ namespace AdminPanelBeta.Properties {
                 this["Role"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Image {
+            get {
+                return ((string)(this["Image"]));
+            }
+            set {
+                this["Image"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User {
+            get {
+                return ((string)(this["User"]));
+            }
+            set {
+                this["User"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Password {
+            get {
+                return ((string)(this["Password"]));
+            }
+            set {
+                this["Password"] = value;
+            }
+        }
     }
 }

@@ -8,19 +8,15 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace AdminPanelBeta.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddGamesDataPage.xaml
-    /// </summary>
     public partial class AddGamesDataPage : Window
     {
         private readonly HttpClient _httpClient = new HttpClient();
+        private string _photoPath;
 
         public AddGamesDataPage()
         {
@@ -31,47 +27,36 @@ namespace AdminPanelBeta.Pages
         {
             try
             {
-                // Проверяем, есть ли токен доступа
-                string token = Properties.Settings.Default.Token;
-                if (string.IsNullOrWhiteSpace(token))
-                {
-                    MessageBox.Show("Отсутствует токен доступа. Пожалуйста, авторизуйтесь.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                // Проверяем, было ли введено название игры
-                if (string.IsNullOrWhiteSpace(NameTextBox.Text))
-                {
-                    MessageBox.Show("Пожалуйста, введите название игры.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                // Получаем байтовый массив изображения
-                byte[] imageData = GetImageBytes(img_1);
-
-                // Проверяем, было ли выбрано изображение
-                if (imageData == null)
+                // Проверяем, выбрано ли изображение
+                if (string.IsNullOrWhiteSpace(_photoPath))
                 {
                     MessageBox.Show("Пожалуйста, выберите изображение для игры.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
+                // Загрузка изображения на сервер
+                string uploadedImagePath = await UploadImageAsync(_photoPath);
+
+                // Проверка успешности загрузки изображения
+                if (string.IsNullOrWhiteSpace(uploadedImagePath))
+                {
+                    MessageBox.Show("Ошибка при загрузке изображения на сервер.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 // Создаем объект с данными новой игры
-                var gameData = new
+                var newGame = new
                 {
                     name = NameTextBox.Text,
                     description = DescriptionTextBox.Text,
-                    photoData = Convert.ToBase64String(imageData)
+                    photo = uploadedImagePath
                 };
 
                 // Создаем контент для POST-запроса
-                var content = new StringContent(JsonConvert.SerializeObject(gameData), Encoding.UTF8, "application/json");
+                var content = new StringContent(JsonConvert.SerializeObject(newGame), Encoding.UTF8, "application/json");
 
                 // Формируем URL для отправки запроса
                 string url = $"{APIConfig.BaseUrl}/games";
-
-                // Добавляем токен в заголовок запроса
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 // Отправляем POST-запрос на сервер для добавления новой игры
                 HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -79,42 +64,67 @@ namespace AdminPanelBeta.Pages
 
                 // Проверяем ответ сервера
                 string responseBody = await response.Content.ReadAsStringAsync();
-                if (!string.IsNullOrEmpty(responseBody))
+                if (responseBody != null)
                 {
-                    MessageBox.Show("Игра успешно добавлена.");
+                    MessageBox.Show("Игра успешно добавлена.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-            }
-            catch (HttpRequestException ex)
-            {
-                MessageBox.Show($"Ошибка при отправке запроса на сервер: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (JsonSerializationException ex)
-            {
-                MessageBox.Show($"Ошибка при сериализации данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка при добавлении игры: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
+        private async Task<string> UploadImageAsync(string imagePath)
         {
             try
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
-                openFileDialog.Multiselect = false; // Разрешаем выбирать только один файл
-
-                if (openFileDialog.ShowDialog() == true)
+                using (var client = new HttpClient())
                 {
-                    string selectedImagePath = openFileDialog.FileName;
-                    DisplaySelectedImage(selectedImagePath); // Отображаем выбранное изображение
+                    var content = new MultipartFormDataContent();
+                    var imageContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+                    content.Add(imageContent, "image", "image.jpg");
+                    var response = await client.PostAsync("URL_для_загрузки_изображения", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string uploadedImagePath = await response.Content.ReadAsStringAsync();
+                        return uploadedImagePath;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при добавлении изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка при загрузке изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
+        private void ExitPage(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private async void AddPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Открытие диалогового окна для выбора файла изображения
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    // Отображение выбранного изображения
+                    DisplaySelectedImage(openFileDialog.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при выборе изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -122,57 +132,28 @@ namespace AdminPanelBeta.Pages
         {
             try
             {
-                // Устанавливаем источник выбранного изображения в img_1
+                // Загрузка выбранного изображения в Image
                 img_1.Source = new BitmapImage(new Uri(imagePath));
-
-                // Показываем img_1 и кнопку удаления
-                img_1.Visibility = Visibility.Visible;
-                deleteButton.Visibility = Visibility.Visible;
+                // Сохраняем путь к выбранному изображению
+                _photoPath = imagePath;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при отображении выбранного изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка при загрузке изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                // Устанавливаем источник изображения img_1 равным изображению NoPhoto.png
-                img_1.Source = new BitmapImage(new Uri("pack://application:,,,/Images/no_photo.png"));
-
-                // Скрываем кнопку удаления на img_1
-                deleteButton.Visibility = Visibility.Hidden;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при удалении изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            // Удаляем изображение и отображаем базовую фотографию
+            img_1.Source = new BitmapImage(new Uri("/Images/no_photo.png", UriKind.Relative));
+            // Сбрасываем путь к выбранному изображению
+            _photoPath = null;
         }
 
         private void ExitPage(object sender, MouseButtonEventArgs e)
         {
             this.Close();
-        }
-
-        // Метод для получения байтового массива изображения
-        private byte[] GetImageBytes(Image image)
-        {
-            if (image.Source is BitmapImage bitmapImage)
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    BitmapEncoder encoder = new PngBitmapEncoder(); // Используйте соответствующий кодировщик в зависимости от формата изображения
-                    encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
-                    encoder.Save(ms);
-                    return ms.ToArray();
-                }
-            }
-            else
-            {
-                return null;
-            }
         }
     }
 }

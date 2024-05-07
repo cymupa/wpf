@@ -1,33 +1,20 @@
 ﻿using AdminPanelBeta.ConnectHttp;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System;
 
 namespace AdminPanelBeta.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddUserDataPage.xaml
-    /// </summary>
+    public partial class AddUserDataPage : Window
+    {
+        private readonly HttpClient _httpClient = new HttpClient();
 
-        public partial class AddUserDataPage : Window
+        public AddUserDataPage()
         {
-            private readonly HttpClient _httpClient = new HttpClient();
-            public AddUserDataPage()
-            {
-                InitializeComponent();
-            }
+            InitializeComponent();
+        }
 
         private async void AddUser_Click(object sender, RoutedEventArgs e)
         {
@@ -36,17 +23,19 @@ namespace AdminPanelBeta.Pages
                 // Создаем объект с данными нового пользователя
                 var newUser = new
                 {
-                    surname = SurnameTextBox.Text,
                     name = NameTextBox.Text,
+                    surname = SurnameTextBox.Text,
+                    patronymic = PatronymicTextBox.Text,
                     birth = BirthDatePicker.SelectedDate?.ToString("yyyy-MM-dd"),
                     tel = TelTextBox.Text,
+                    address = AddressTextBox.Text,
                     password = PassTextBox.Text
                 };
 
                 // Проверяем обязательные поля
-                if (string.IsNullOrWhiteSpace(newUser.surname) || string.IsNullOrWhiteSpace(newUser.name) || string.IsNullOrWhiteSpace(newUser.tel))
+                if (string.IsNullOrWhiteSpace(newUser.name) || string.IsNullOrWhiteSpace(newUser.surname) || string.IsNullOrWhiteSpace(newUser.tel))
                 {
-                    MessageBox.Show("Пожалуйста, заполните обязательные поля: Фамилия, Имя и Телефон.");
+                    MessageBox.Show("Пожалуйста, заполните обязательные поля: Фамилия, Имя и Телефон.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -64,7 +53,7 @@ namespace AdminPanelBeta.Pages
                 string responseBody = await response.Content.ReadAsStringAsync();
                 if (responseBody != null)
                 {
-                    MessageBox.Show("Пользователь успешно добавлен.");
+                    MessageBox.Show("Пользователь успешно добавлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
@@ -74,8 +63,8 @@ namespace AdminPanelBeta.Pages
         }
 
         private void ExitPage(object sender, RoutedEventArgs e)
-            {
-                this.Close();
-            }
+        {
+            this.Close();
         }
     }
+}

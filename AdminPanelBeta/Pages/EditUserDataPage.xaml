@@ -23,7 +23,7 @@
                    MouseDown="ExitPage"
                    Source="/Images/close_2.png"/>
             <StackPanel x:Name="DataAddUsers">
-                <TextBlock Text="Добавление сотрудника"
+                <TextBlock Text="Редактирование сотрудника"
                            Style="{StaticResource TextBlockTitleNamePage}"
                            Margin="0"
                            FontSize="20"/>
@@ -38,63 +38,68 @@
                          Text="Имя"
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding product_name}"
+                         Text="{Binding Name}"
                          MaxLength="255"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                          Text="Телефон"
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
+                         Text="{Binding Tel}"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                          Text="Фамилия"
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
+                         Text="{Binding Surname}"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                       Text="Адресс"
                       HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                      Text="{Binding price}"
+                      Text="{Binding Address}"
                       Margin="0,5,0,5"
                       MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                          Text="Отчество"
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
+                         Text="{Binding Patronymic}"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Возраст"
-                         HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
+                    Text="Дата рождения"></TextBlock>
+                    <DatePicker x:Name="BirthDatePicker"
+            Margin="0,5,0,5"
+            DisplayDateStart="1900-01-01"
+            DisplayDateEnd="2100-01-01"
+            SelectedDateFormat="Short"
+            SelectedDate="{Binding Birth}"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
                          Text="Пароль"
                          HorizontalAlignment="Center" Height="20"/>
                     <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
+                         Text="{Binding Password}"
                          Margin="0,5,0,5"
                          MaxLength="10"/>
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                         Text="Должность"
+                         Text="Роль"
                          HorizontalAlignment="Center" Height="20"/>
-                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                         Text="{Binding price}"
-                         Margin="0,5,0,5"
-                         MaxLength="10"/>
+                    <ComboBox Style="{StaticResource ComboBoxAddAndEdit}"
+          x:Name="ComboBoxRole"
+          ItemsSource="{Binding RolesList}"
+          DisplayMemberPath="Name"
+          SelectedValuePath="Id"
+          SelectedItem="{Binding SelectedRole}"
+          SelectedIndex="0"
+          Text="{Binding RoleName, Mode=OneWay}"/>
                 </UniformGrid>
-                
                 <Button Content="Редактировать"
                         Style="{StaticResource ButtonAddAndEditInWindow}"
                         Width="150"
-                        Margin="10,15,10,10">
+                        Margin="10,15,10,10"
+                        Click="UpdateUser_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>
