@@ -4,11 +4,9 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace AdminPanelBeta.Pages
@@ -34,26 +32,32 @@ namespace AdminPanelBeta.Pages
                     return;
                 }
 
-                // Загрузка изображения на сервер
-                string uploadedImagePath = await UploadImageAsync(_photoPath);
-
-                // Проверка успешности загрузки изображения
-                if (string.IsNullOrWhiteSpace(uploadedImagePath))
-                {
-                    MessageBox.Show("Ошибка при загрузке изображения на сервер.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                // Чтение содержимого изображения в массив байтов
+                byte[] imageData = File.ReadAllBytes(_photoPath);
 
                 // Создаем объект с данными новой игры
                 var newGame = new
                 {
                     name = NameTextBox.Text,
                     description = DescriptionTextBox.Text,
-                    photo = uploadedImagePath
+                    photo = imageData // Отправляем массив байтов изображения
                 };
 
                 // Создаем контент для POST-запроса
                 var content = new StringContent(JsonConvert.SerializeObject(newGame), Encoding.UTF8, "application/json");
+
+                // Получаем токен из настроек или иного источника
+                string token = Properties.Settings.Default.Token;
+
+                // Проверяем, что токен не пустой
+                if (string.IsNullOrWhiteSpace(token))
+                {
+                    MessageBox.Show("Отсутствует токен доступа. Пожалуйста, войдите в систему.");
+                    return;
+                }
+
+                // Добавляем токен в заголовок запроса
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
                 // Формируем URL для отправки запроса
                 string url = $"{APIConfig.BaseUrl}/games";
@@ -74,40 +78,6 @@ namespace AdminPanelBeta.Pages
                 MessageBox.Show($"Ошибка при добавлении игры: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private async Task<string> UploadImageAsync(string imagePath)
-        {
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    var content = new MultipartFormDataContent();
-                    var imageContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
-                    content.Add(imageContent, "image", "image.jpg");
-                    var response = await client.PostAsync("URL_для_загрузки_изображения", content);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string uploadedImagePath = await response.Content.ReadAsStringAsync();
-                        return uploadedImagePath;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при загрузке изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
-            }
-        }
-
-        private void ExitPage(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private async void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -142,7 +112,6 @@ namespace AdminPanelBeta.Pages
                 MessageBox.Show($"Ошибка при загрузке изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             // Удаляем изображение и отображаем базовую фотографию
@@ -151,7 +120,7 @@ namespace AdminPanelBeta.Pages
             _photoPath = null;
         }
 
-        private void ExitPage(object sender, MouseButtonEventArgs e)
+        private void ExitPage(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

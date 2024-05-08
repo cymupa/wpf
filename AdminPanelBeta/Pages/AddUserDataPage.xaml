@@ -79,7 +79,6 @@
                                 DisplayDateStart="1900-01-01"
                                 DisplayDateEnd="2100-01-01"
                                 SelectedDateFormat="Short"/>
-
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
          Text="Пароль"
          HorizontalAlignment="Center" Height="20"/>

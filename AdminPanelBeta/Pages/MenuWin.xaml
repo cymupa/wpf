@@ -43,7 +43,7 @@
         x:Name="EmployeesButton"
         Style="{DynamicResource ButtonNavigateInMenuWindow}"/>
             <Button Grid.Column="4" Content="Статистика"
-        x:Name="StatisticsButton"
+        x:Name="StatisticsButton" Click="StatisticsToButton"
         Style="{DynamicResource ButtonNavigateInMenuWindow}"/>
             <Image Grid.Column="5" Source="/Images/close_1.png"
                MouseDown="ButtonNavigateToWelcomeWindow"

@@ -98,5 +98,10 @@ namespace AdminPanelBeta.Pages
             GamesDataPage GamesDataPage = new GamesDataPage();
             NavigateFrame(GamesDataPage);
         }
+        private void StatisticsToButton(object sender, RoutedEventArgs e)
+        {
+            StatisticsDataPage statisticsdatapage = new StatisticsDataPage();
+            NavigateFrame(statisticsdatapage);
+        }
     }
 }
