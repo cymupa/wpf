@@ -25,10 +25,10 @@ namespace AdminPanelBeta.Pages
         private void AutorizationWin_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем значения по умолчанию
-            // TelTextBox.Text = "000333000";
-            // PasswordTextBox.Password = "00000000";
-            TelTextBox.Text = "100999001";
-            PasswordTextBox.Password = "test1111";
+            TelTextBox.Text = "000333000";
+            PasswordTextBox.Password = "00000000";
+            // TelTextBox.Text = "100999001";
+            // PasswordTextBox.Password = "test1111";
         }
 
         public async void ButtonSignIn_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using AdminPanelBeta.ConnectHttp;
 using Microsoft.Win32;
+using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
@@ -29,14 +30,19 @@ namespace AdminPanelBeta.Pages
                     MessageBox.Show("Пожалуйста, выберите изображение для игры.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+
+                // Конвертируем изображение в формат base64
+                string base64Image = ConvertImageToBase64(_photoPath);
+
                 var newGame = new
                 {
                     name = NameTextBox.Text,
                     description = DescriptionTextBox.Text,
+                    photo = base64Image // Передаем изображение в формате base64
                 };
 
-                // Создаем контент для POST-запроса
-                var content = new StringContent(JsonConvert.SerializeObject(newGame), Encoding.UTF8, "application/json");
+                // Сериализуем объект данных игры в JSON
+                string jsonData = JsonConvert.SerializeObject(newGame);
 
                 // Получаем токен из настроек или иного источника
                 string token = Properties.Settings.Default.Token;
@@ -54,7 +60,8 @@ namespace AdminPanelBeta.Pages
                 // Формируем URL для отправки запроса
                 string url = $"{APIConfig.BaseUrl}/games";
 
-                // Отправляем POST-запрос на сервер для добавления новой игры
+                // Отправляем JSON-данные на сервер
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await _httpClient.PostAsync(url, content);
                 response.EnsureSuccessStatusCode();
 
@@ -70,6 +77,7 @@ namespace AdminPanelBeta.Pages
                 MessageBox.Show($"Ошибка при добавлении игры: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private async void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -104,6 +112,7 @@ namespace AdminPanelBeta.Pages
                 MessageBox.Show($"Ошибка при загрузке изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             // Удаляем изображение и отображаем базовую фотографию
@@ -115,6 +124,21 @@ namespace AdminPanelBeta.Pages
         private void ExitPage(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        // Метод для конвертации изображения в формат base64
+        private string ConvertImageToBase64(string imagePath)
+        {
+            try
+            {
+                byte[] imageBytes = File.ReadAllBytes(imagePath);
+                string base64Image = Convert.ToBase64String(imageBytes);
+                return base64Image;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Ошибка при конвертации изображения в base64: {ex.Message}");
+            }
         }
     }
 }
