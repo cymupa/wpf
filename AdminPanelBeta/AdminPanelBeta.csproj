@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\EditNewsDataPage.xaml.cs">
+      <DependentUpon>EditNewsDataPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\NewsDataPage.xaml.cs">
       <DependentUpon>NewsDataPage.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EditGamesDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditNewsDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

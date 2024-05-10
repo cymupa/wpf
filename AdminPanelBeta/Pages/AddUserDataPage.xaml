@@ -27,10 +27,17 @@
                            Style="{StaticResource TextBlockTitleNamePage}"
                            Margin="0"
                            FontSize="20"/>
-                <Image
-                         Width="140"
-                         Source="/Images/no_photo.png"
-                         Height="140"/>
+                <StackPanel x:Name="stackPanelImages" Margin="0,0,0,10">
+                    <Image x:Name="img_1" Width="200" Height="200" Source="/Images/no_photo.png"/>
+                    <Button x:Name="deleteButton" Content="Удалить фотографию" Width="120" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,0" Visibility="Hidden" Click="deleteButton_Click"/>
+                    <Button 
+        Content="Добавить"
+        Style="{StaticResource ButtonAddAndEditInWindow}"
+        Width="150"
+        Click="AddPhotoButton_Click"
+        Margin="10,15,10,10">
+                    </Button>
+                </StackPanel>
                 <UniformGrid Margin="-20,5,0,0" Columns="4">
                     <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
          Text="Имя"

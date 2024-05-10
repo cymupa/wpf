@@ -17,6 +17,9 @@ namespace AdminPanelBeta.Pages
         {
             InitializeComponent();
             Loaded += async (sender, e) => await LoadStatistics();
+
+            // Загружаем список категорий при запуске страницы
+            LoadCategories();
         }
 
         private async Task LoadStatistics()
@@ -43,13 +46,12 @@ namespace AdminPanelBeta.Pages
                 SalesStatistics statistics = JsonConvert.DeserializeObject<SalesStatistics>(statisticsJson);
 
                 // Отображаем статистику на странице
-                SalesTodayTextBlock.Text = statistics.SalesToday.ToString();
-                SalesLastMonthTextBlock.Text = statistics.SalesLastMonth.ToString();
-                SalesLastYearTextBlock.Text = statistics.SalesLastYear.ToString();
-                SalesTotalTextBlock.Text = statistics.SalesTotal.ToString();
+                SalesTodayTextBlock.Text = statistics.Sales_Today.ToString();
+                SalesLastMonthTextBlock.Text = statistics.Sales_Last_Month.ToString();
+                SalesLastYearTextBlock.Text = statistics.Sales_Last_Year.ToString();
+                SalesTotalTextBlock.Text = statistics.Sales_Total.ToString();
 
                 // Загружаем список категорий
-                await LoadCategories();
             }
             catch (Exception ex)
             {
@@ -61,6 +63,9 @@ namespace AdminPanelBeta.Pages
         {
             try
             {
+                // Очищаем ComboBoxCategories перед загрузкой категорий
+                ComboBoxCategories.ItemsSource = null;
+
                 // Получаем список категорий
                 HttpResponseMessage categoriesResponse = await _httpClient.GetAsync($"{APIConfig.BaseUrl}/categories");
                 categoriesResponse.EnsureSuccessStatusCode();
@@ -69,6 +74,9 @@ namespace AdminPanelBeta.Pages
 
                 // Отображаем категории в ComboBox
                 ComboBoxCategories.ItemsSource = categories;
+
+                // Сбрасываем выбранную категорию
+                ComboBoxCategories.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -82,83 +90,44 @@ namespace AdminPanelBeta.Pages
             {
                 if (ComboBoxCategories.SelectedItem != null)
                 {
-                    string categoryName = (ComboBoxCategories.SelectedItem as Category).Name;
+                    int categoryId = (ComboBoxCategories.SelectedItem as Category).Id;
 
-                    // Получаем продукты по выбранной категории
-                    HttpResponseMessage productsResponse = await _httpClient.GetAsync($"{APIConfig.BaseUrl}/sales/category/{categoryName}");
-                    productsResponse.EnsureSuccessStatusCode();
-                    string productJson = await productsResponse.Content.ReadAsStringAsync();
-                    Product product = JsonConvert.DeserializeObject<Product>(productJson);
+                    // Получаем статистику продаж по выбранной категории
+                    HttpResponseMessage categoryStatisticsResponse = await _httpClient.GetAsync($"{APIConfig.BaseUrl}/sales/category/{categoryId}");
+                    categoryStatisticsResponse.EnsureSuccessStatusCode();
+                    string categoryStatisticsJson = await categoryStatisticsResponse.Content.ReadAsStringAsync();
+                    SalesStatistics categoryStatistics = JsonConvert.DeserializeObject<SalesStatistics>(categoryStatisticsJson);
 
-                    // Отображаем продукт на странице
-                    // Вместо ListBoxProducts.ItemsSource используем прямое присвоение
-                    //ListBoxProducts.ItemsSource = product;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при загрузке продуктов: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private async void SearchNameTovarTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                string searchText = SearchNameTovarTextBox.Text;
-
-                // Проверяем, пуст ли текстовый запрос
-                if (string.IsNullOrWhiteSpace(searchText))
-                {
-                    // Если запрос пуст, загружаем общую статистику
-                    await LoadStatistics();
+                    // Отображаем статистику продаж по выбранной категории на странице
+                    SalesTodayTextBlock.Text = categoryStatistics.Sales_Today.ToString();
+                    SalesLastMonthTextBlock.Text = categoryStatistics.Sales_Last_Month.ToString();
+                    SalesLastYearTextBlock.Text = categoryStatistics.Sales_Last_Year.ToString();
+                    SalesTotalTextBlock.Text = categoryStatistics.Sales_Total.ToString();
                 }
                 else
                 {
-                    // Выполняем запрос к API для поиска товаров по тексту
-                    HttpResponseMessage searchResponse = await _httpClient.GetAsync($"{APIConfig.BaseUrl}/sales/search?query={searchText}");
-                    searchResponse.EnsureSuccessStatusCode();
-                    string searchJson = await searchResponse.Content.ReadAsStringAsync();
-                    SalesStatistics searchStatistics = JsonConvert.DeserializeObject<SalesStatistics>(searchJson);
-
-                    // Отображаем статистику по найденным товарам
-                    SalesTodayTextBlock.Text = searchStatistics.SalesToday.ToString();
-                    SalesLastMonthTextBlock.Text = searchStatistics.SalesLastMonth.ToString();
-                    SalesLastYearTextBlock.Text = searchStatistics.SalesLastYear.ToString();
-                    SalesTotalTextBlock.Text = searchStatistics.SalesTotal.ToString();
+                    // Если категория не выбрана, отображаем базовую статистику
+                    await LoadStatistics();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при выполнении поиска: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка при загрузке статистики продаж: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private class SalesStatistics
+        
+        public class SalesStatistics
         {
-            public decimal SalesToday { get; set; }
-            public decimal SalesLastMonth { get; set; }
-            public decimal SalesLastYear { get; set; }
-            public decimal SalesTotal { get; set; }
+            public decimal Sales_Today { get; set; }
+            public decimal Sales_Last_Month { get; set; }
+            public decimal Sales_Last_Year { get; set; }
+            public decimal Sales_Total { get; set; }
         }
 
-        private class Category
+        public class Category
         {
             public int Id { get; set; }
             public string Name { get; set; }
-            public DateTime CreatedAt { get; set; }
-            public DateTime UpdatedAt { get; set; }
-        }
-
-        private class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public int Quantity { get; set; }
-            public string Photo { get; set; }
-            public decimal Price { get; set; }
-            public int CategoryId { get; set; }
             public DateTime CreatedAt { get; set; }
             public DateTime UpdatedAt { get; set; }
         }

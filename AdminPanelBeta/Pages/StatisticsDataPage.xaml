@@ -19,13 +19,6 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel>
-                        <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
-                                   Text="Поиск:"/>
-                        <TextBox Style="{StaticResource TextBoxSearch}"
-                          x:Name="SearchNameTovarTextBox"
-                          TextChanged="SearchNameTovarTextBox_TextChanged"/>
-                    </StackPanel>
                     <StackPanel Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
                                    Text="Категория:"/>

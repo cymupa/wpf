@@ -1,13 +1,11 @@
 ﻿using AdminPanelBeta.ConnectHttp;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using System;
-using System.IO;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows;
+using System;
 
 namespace AdminPanelBeta.Pages
 {
@@ -31,16 +29,10 @@ namespace AdminPanelBeta.Pages
                     MessageBox.Show("Пожалуйста, выберите изображение для игры.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-
-                // Чтение содержимого изображения в массив байтов
-                byte[] imageData = File.ReadAllBytes(_photoPath);
-
-                // Создаем объект с данными новой игры
                 var newGame = new
                 {
                     name = NameTextBox.Text,
                     description = DescriptionTextBox.Text,
-                    photo = imageData // Отправляем массив байтов изображения
                 };
 
                 // Создаем контент для POST-запроса

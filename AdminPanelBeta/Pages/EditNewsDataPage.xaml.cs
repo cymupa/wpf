@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace AdminPanelBeta.Pages.Manager
+namespace AdminPanelBeta.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AddNewsDataPage.xaml
+    /// Логика взаимодействия для EditNewsDataPage.xaml
     /// </summary>
-    public partial class AddNewsDataPage : Window
+    public partial class EditNewsDataPage : Window
     {
-        public AddNewsDataPage()
+        public EditNewsDataPage()
         {
             InitializeComponent();
         }
@@ -27,7 +27,5 @@ namespace AdminPanelBeta.Pages.Manager
         {
             this.Close();
         }
-
     }
 }
-

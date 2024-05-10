@@ -49,13 +49,13 @@
                 <Grid>
                     <StackPanel Margin="20,5,20,0">
                         <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
-                                   Text="Описание"
-                                   HorizontalAlignment="Center" Height="20"/>
+           Text="Описание"
+           HorizontalAlignment="Center" Height="20"/>
                         <TextBox Style="{StaticResource TextBoxAddAndEdit}"
-                                 Text="{Binding Description}"
-                                 MaxLength="255"
-                                 Height="80"
-                                 x:Name="DescriptionTextBox"/>
+         Text="{Binding Text, ElementName=DescriptionTextBox}" 
+         MaxLength="255"
+         Height="80"
+         x:Name="DescriptionTextBox"/>
                     </StackPanel>
                 </Grid>
                 <Button Content="Редактировать"

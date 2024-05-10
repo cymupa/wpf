@@ -61,6 +61,14 @@ namespace AdminPanelBeta.Pages
                 MessageBox.Show($"Ошибка при добавлении пользователя: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void ExitPage(object sender, RoutedEventArgs e)
         {

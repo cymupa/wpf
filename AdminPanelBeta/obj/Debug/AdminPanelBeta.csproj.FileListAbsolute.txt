@@ -72,3 +72,5 @@ H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\NewsDataPage.g.cs
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\AddNewsDataPage.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\BroadcastDataPage.baml
 H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\NewsDataPage.baml
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditNewsDataPage.g.cs
+H:\rb\AdminPanelBeta\AdminPanelBeta\obj\Debug\Pages\EditNewsDataPage.baml

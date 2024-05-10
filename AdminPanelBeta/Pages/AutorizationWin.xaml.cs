@@ -25,8 +25,10 @@ namespace AdminPanelBeta.Pages
         private void AutorizationWin_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем значения по умолчанию
-            TelTextBox.Text = "000333000";
-            PasswordTextBox.Password = "00000000";
+            // TelTextBox.Text = "000333000";
+            // PasswordTextBox.Password = "00000000";
+            TelTextBox.Text = "100999001";
+            PasswordTextBox.Password = "test1111";
         }
 
         public async void ButtonSignIn_Click(object sender, RoutedEventArgs e)
@@ -70,40 +72,30 @@ namespace AdminPanelBeta.Pages
                 HttpResponseMessage meResponse = await client.GetAsync(APIConfig.BaseUrl + "/me");
 
                 string meResponseBody = await meResponse.Content.ReadAsStringAsync();
-                JArray meResponseArray = JArray.Parse(meResponseBody);
+                JObject meResponseObject = JObject.Parse(meResponseBody);
 
-                // Предполагаем, что массив содержит только один объект пользователя
-                if (meResponseArray.Count > 0)
+                // Получаем данные пользователя из объекта
+                string name = meResponseObject["name"].ToString();
+                string surname = meResponseObject["surname"].ToString();
+                int role_id = Convert.ToInt32(meResponseObject["role_id"]);
+
+                // Сохраняем данные пользователя в настройках приложения
+                Properties.Settings.Default.Name = name;
+                Properties.Settings.Default.Surname = surname;
+                Properties.Settings.Default.Role = role_id.ToString();
+                Properties.Settings.Default.Save();
+
+                // Проверяем айди ролей
+                if (role_id == 2 || role_id == 3)
                 {
-                    // Получаем данные пользователя из первого объекта массива
-                    dynamic meResponseObject = meResponseArray[0];
-                    string name = meResponseObject.name;
-                    string surname = meResponseObject.surname;
-                    int role_id = meResponseObject.role_id;
-
-                    // Сохраняем данные пользователя в настройках приложения
-                    Properties.Settings.Default.Name = name;
-                    Properties.Settings.Default.Surname = surname;
-                    Properties.Settings.Default.Role = role_id.ToString();
-                    Properties.Settings.Default.Save();
-
-                    // Проверяем айди ролей
-                    if (role_id == 2 || role_id == 3)
-                    {
-                        // Открываем окно меню
-                        var menuwin = new MenuWin();
-                        menuwin.Show();
-                    }
-                    else
-                    {
-                        // Пользователь не имеет прав доступа
-                        MessageBox.Show("У вас нет доступа к этому приложению.");
-                        return;
-                    }
+                    // Открываем окно меню
+                    var menuwin = new MenuWin();
+                    menuwin.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось получить информацию о пользователе.");
+                    // Пользователь не имеет прав доступа
+                    MessageBox.Show("У вас нет доступа к этому приложению.");
                     return;
                 }
 

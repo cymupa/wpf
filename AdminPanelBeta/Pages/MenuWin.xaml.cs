@@ -30,7 +30,7 @@ namespace AdminPanelBeta.Pages
             string role = Properties.Settings.Default.Role;
 
             // Отображаем данные в соответствующих TextBlock элементах
-            TextBlockFIOUser.Text = $"{surname} {name}";
+            TextBlockFIOUser.Text = $"{name} {surname}";
             TextBlockPositionUser.Text = GetRoleName(role);
 
             // Скрываем или показываем кнопки в зависимости от роли

@@ -19,21 +19,6 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel>
-                        <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
-                                   Text="Поиск:"/>
-                        <TextBox Style="{StaticResource TextBoxSearch}"
-                                 x:Name="SearchNameTovarTextBox"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
-                                   Text="Категория:"/>
-                        <ComboBox Style="{StaticResource ComboBoxFiltr}" 
-                                  DisplayMemberPath="category_name"
-                                  SelectedValuePath="category_name"
-                                  SelectedIndex="0"
-                                  x:Name="ComboBoxCategories"/>
-                    </StackPanel>
                 </Grid>
                 <Button Content="Добавить игру"
                         Click="AddGameButton_Click"
@@ -68,7 +53,8 @@
                                                    TextTrimming="CharacterEllipsis"/>
                                         <Label Content="Изменить"
                                                    Grid.Column="1"
-                                                   Style="{DynamicResource LabelTile}"/>
+                                                   Style="{DynamicResource LabelTile}"
+                                                   MouseDoubleClick="EditGamesToNavigateWin"/>
                                         <Label Content="Удалить"
                                                    Grid.Column="2"
                                                    Style="{DynamicResource LabelTile}"/>
