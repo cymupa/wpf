@@ -19,12 +19,6 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel>
-                        <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
-                                   Text="Поиск:"/>
-                        <TextBox Style="{StaticResource TextBoxSearch}"
-                                 x:Name="SearchNameTovarTextBox"/>
-                    </StackPanel>
                     <StackPanel Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextBlockTitleSearchAndFiltr}" 
                                    Text="Категория:"/>
@@ -36,6 +30,7 @@
                     </StackPanel>
                 </Grid>
                 <Button Content="Добавить турнир"
+                        Click="AddTournamentsButton"
                         Style="{StaticResource ButtonInsertInPage}">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -62,12 +57,13 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding product_name}"
+                                        <TextBlock Text="{Binding Name}"
                                                    Style="{DynamicResource TextBlockTile}"
                                                    TextTrimming="CharacterEllipsis"/>
                                         <Label Content="Изменить"
                                                    Grid.Column="1"
-                                                   Style="{DynamicResource LabelTile}"/>
+                                                   Style="{DynamicResource LabelTile}"
+                                                   MouseDoubleClick="EditTournamentsToNavigateWin"/>
                                         <Label Content="Удалить"
                                                    Grid.Column="2"
                                                    Style="{DynamicResource LabelTile}"/>

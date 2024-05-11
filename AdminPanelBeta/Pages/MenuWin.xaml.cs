@@ -103,5 +103,10 @@ namespace AdminPanelBeta.Pages
             StatisticsDataPage statisticsdatapage = new StatisticsDataPage();
             NavigateFrame(statisticsdatapage);
         }
+        private void TournamentsToButton(object sender, RoutedEventArgs e)
+        {
+            TournamentsData tournamentsdata = new TournamentsData();
+            NavigateFrame(tournamentsdata);
+        }
     }
 }

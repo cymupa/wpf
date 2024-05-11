@@ -5,6 +5,7 @@ FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\AddTournamentsData.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\AddUserDataPage.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\AutorizationWin.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\EditGamesDataPage.xaml;;
+FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\EditNewsDataPage.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\EditTournamentsData.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\EditUserDataPage.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\GamesDataPage.xaml;;
@@ -16,5 +17,4 @@ FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\StatisticsDataPage.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\TournamentsData.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\UserDataPage.xaml;;
 FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\WelcomeWin.xaml;;
-FH:\rb\AdminPanelBeta\AdminPanelBeta\Pages\EditNewsDataPage.xaml;;
 
