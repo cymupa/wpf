@@ -1,0 +1,116 @@
+﻿<Page x:Class="AdminPanelBeta.Pages.UserDataPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminPanelBeta.Pages"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="545"
+        Title="ProductsDataPage">
+    <Grid>
+        <Border Style="{StaticResource BorderedBorder}" Background="{StaticResource ColorBaseDark}"
+           Margin="20"
+           CornerRadius="20">
+            <StackPanel>
+                <TextBlock Text="Пользователи"
+                      Style="{StaticResource TextBlockTitleNamePage}"/>
+                <Button Content="Добавить пользователя"
+                   Width="150"
+                   Click="AddUserButton_Click"
+                   Style="{StaticResource ButtonInsertInPage}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <ListBox x:Name="ListBoxUsersList"
+                        Height="410"
+                        Margin="0,10,0,0"
+                            HorizontalContentAlignment="Stretch"
+                            SelectionChanged="SelectionChangedUsers"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            Background="{StaticResource ColorBaseDark}"
+                            BorderThickness="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border Background="{DynamicResource ColorBlue}"
+                                       CornerRadius="20"
+                                       Margin="10">
+                                    <Image Source="/Images/human.png"
+                                          Margin="5"/>
+                                </Border>
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                                    <Border Background="{DynamicResource ColorBlue}"
+                                           Style="{StaticResource BorderTileListBox}"
+                                           Width="160"
+                                           Height="30"
+                                           Margin="10">
+                                        <TextBlock Text="{Binding Name}"
+                                                  HorizontalAlignment="Center"
+                                                  Style="{DynamicResource TextBlockTile}"
+                                                  TextTrimming="CharacterEllipsis"/>
+                                    </Border>
+                                    <Border Background="{DynamicResource ColorBlue}"
+                                           Style="{StaticResource BorderTileListBox}"
+                                           Width="160"
+                                           Height="30"
+                                           Margin="10">
+                                        <TextBlock Text="{Binding RoleName}"
+                                                  HorizontalAlignment="Center"
+                                                  Style="{DynamicResource TextBlockTile}"
+                                                  TextTrimming="CharacterEllipsis"/>
+                                    </Border>
+                                    <Border Background="{DynamicResource ColorBlue}"
+                                           Style="{StaticResource BorderTileListBox}"
+                                           Width="160"
+                                           Height="30"
+                                           Margin="10">
+                                        <Label Content="Изменить"
+                                              Grid.Column="2"
+                                              HorizontalAlignment="Center"
+                                              Margin="0"
+                                              FontSize="15"
+                                              Style="{DynamicResource LabelTile}"
+                                              MouseDoubleClick="EditUsersToNavigateWin"/>
+                                    </Border>
+                                    <Border Background="{DynamicResource ColorDelete}"
+                                           Style="{StaticResource BorderTileListBox}"
+                                           Width="160"
+                                           Height="30"
+                                           Margin="10">
+                                        <Label Content="Удалить"
+                                              Grid.Column="2"
+                                              HorizontalAlignment="Center"
+                                              Margin="0"
+                                              FontSize="15"
+                                              Style="{DynamicResource LabelTile}"
+                                              MouseDoubleClick="DeleteUsers"/>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel ItemWidth="auto"
+                                      HorizontalAlignment="Left"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,87 @@
+﻿<Window x:Class="AdminPanelBeta.Pages.EditTournamentsData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminPanelBeta.Pages"
+        mc:Ignorable="d"
+                      WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Width="350"
+        SizeToContent="Height"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="8" Background="{StaticResource ColorBaseDark}"
+        BorderBrush="{StaticResource ColorBaseDark}"
+        BorderThickness="2">
+        <StackPanel>
+            <Image Height="30"
+               Width="30"
+               HorizontalAlignment="Right"
+               Margin="0,5,5,0"
+               MouseDown="ExitPage"
+               Source="/Images/close_2.png"/>
+            <StackPanel x:Name="DataAddProducts">
+                <TextBlock Text="Редактирование турнира"
+                       Style="{StaticResource TextBlockTitleNamePage}"
+                       Margin="0"
+                       FontSize="20"/>
+                <UniformGrid Margin="0,5,20,0" Columns="2">
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                        Text="Название"
+                        HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                         Text="{Binding product_name}"
+                         MaxLength="255"/>
+
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                               Text="Начальная дата"
+                               HorizontalAlignment="Center" Height="20"/>
+                    <DatePicker x:Name="StartDatePicker"
+                                Margin="0,5,0,5"
+                                DisplayDateStart="1900-01-01"
+                                DisplayDateEnd="2100-01-01"
+                                SelectedDateFormat="Short"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                               Text="Конечная дата"
+                               HorizontalAlignment="Center" Height="20"/>
+                    <DatePicker x:Name="EndDatePicker"
+                                Margin="0,5,0,5"
+                                DisplayDateStart="1900-01-01"
+                                DisplayDateEnd="2100-01-01"
+                                SelectedDateFormat="Short"/>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                           Text="Взнос"
+                           HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                             Text="{Binding price}"
+                             Margin="0,5,0,5"
+                             MaxLength="10"/>
+                </UniformGrid>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextBlockTitleTextBoxAddAndEdit}"
+                     Text="Описание"
+                     HorizontalAlignment="Center" Height="20"/>
+                    <TextBox Style="{StaticResource TextBoxAddAndEdit}"
+                     MaxLength="10"
+                     Width="330"
+                     Height="80"
+                     Text="{Binding quantity}"/>
+                </StackPanel>
+                <UniformGrid Height="80">
+                    <Button Content="Редактировать"
+                            Style="{StaticResource ButtonAddAndEditInWindow}"
+                            Width="130"
+                            Margin="0,10,0,0">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </UniformGrid>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

@@ -1,0 +1,136 @@
+﻿<Application x:Class="AdminPanelBeta.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AdminPanelBeta"
+             StartupUri="/Pages/WelcomeWin.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="ColorBaseDark">#6984AC</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBlue">#1F2F54</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBlack">Black</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorWhite">White</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorDelete">#15645E</SolidColorBrush>
+
+        <Style x:Key="ButtonNavigateInMenuWindow" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ColorBlue}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorWhite}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ColorBlack}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ButtonAddAndEditInWindow" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ColorBlue}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorWhite}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="20"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ColorBlack}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ButtonInsertInPage" TargetType="Button" BasedOn="{StaticResource ButtonAddAndEditInWindow}">
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Margin" Value="20,5,10,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="ButtonAvtorizatAndRegistrFirst" TargetType="Button" BasedOn="{StaticResource ButtonAddAndEditInWindow}">
+            <Setter Property="Background" Value="{StaticResource ColorBlue}"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+        <Style x:Key="ButtonAvtorizatAndRegistrSecond" TargetType="Button" BasedOn="{StaticResource ButtonAvtorizatAndRegistrFirst}">
+            <Setter Property="Background" Value="{StaticResource ColorBlue}"/>
+        </Style>
+        <Style x:Key="TextBlockBase" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ColorWhite}"/>
+        </Style>
+        <Style x:Key="TextBlockWelcomePageTextTitle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="TextBlockWelcomePageText" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="TextBlockTitleNamePage" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5,10,5,5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="TextBlockTile" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="10,5,5,5"/>
+        </Style>
+        <Style x:Key="LabelTile" TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource ColorWhite}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="TextBlockTitleTextBoxAddAndEdit" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="BorderTileListBox" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource ColorBlue}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+        <Style x:Key="TextBoxAddAndEdit" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource ColorBlue}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorWhite}"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style x:Key="PasswordBoxSignIn" TargetType="PasswordBox">
+            <Setter Property="Background" Value="{StaticResource ColorBlue}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorWhite}"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style x:Key="ComboBoxAddAndEdit" TargetType="ComboBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="22"/>
+        </Style>
+
+        <Style x:Key="TextBoxSearch" TargetType="TextBox" BasedOn="{StaticResource TextBoxAddAndEdit}">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="Margin" Value="20,0,20,10"/>
+            <Setter Property="Width" Value="auto"/>
+        </Style>
+        <Style x:Key="TextBlockTitleSearchAndFiltr" TargetType="TextBlock" BasedOn="{StaticResource TextBlockTitleNamePage}">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="20,0,0,5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="ComboBoxFiltr" TargetType="ComboBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="Margin" Value="20,0,20,10"/>
+        </Style>
+        <Style x:Key="BorderedBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{StaticResource ColorBlue}"/>
+            <Setter Property="BorderThickness" Value="10"/>
+        </Style>
+    </Application.Resources>
+</Application>
